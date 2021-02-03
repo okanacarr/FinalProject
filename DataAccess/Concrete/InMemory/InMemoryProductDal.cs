@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -13,11 +14,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryProductDal()
         {
             _products = new List<Product> {
-                new Product { productId = 1, CategoryId = 1, ProductName = "Bardak", UnitPrice = 15, UnitsInStock = 15 },
-                new Product { productId = 1, CategoryId = 1, ProductName = "Kamera", UnitPrice = 500, UnitsInStock = 3 },
-                new Product { productId = 1, CategoryId = 1, ProductName = "Telefon", UnitPrice = 1500, UnitsInStock = 2 },
-                new Product { productId  = 1, CategoryId = 1, ProductName = "Klavye", UnitPrice=  150, UnitsInStock = 65 },
-                new Product { productId  = 1, CategoryId = 1, ProductName = "Fare", UnitPrice=  85, UnitsInStock = 1 },
+                new Product { ProductId = 1, CategoryId = 1, ProductName = "Bardak", UnitPrice = 15, UnitsInStock = 15 },
+                new Product { ProductId = 1, CategoryId = 1, ProductName = "Kamera", UnitPrice = 500, UnitsInStock = 3 },
+                new Product { ProductId = 1, CategoryId = 1, ProductName = "Telefon", UnitPrice = 1500, UnitsInStock = 2 },
+                new Product { ProductId  = 1, CategoryId = 1, ProductName = "Klavye", UnitPrice=  150, UnitsInStock = 65 },
+                new Product { ProductId  = 1, CategoryId = 1, ProductName = "Fare", UnitPrice=  85, UnitsInStock = 1 },
             };
         }
         public void Add(Product product)
@@ -28,7 +29,7 @@ namespace DataAccess.Concrete.InMemory
         public void Delete(Product product)
         {
 
-            Product productToDelete = _products.SingleOrDefault(p => p.productId == product.productId);
+            Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
             _products.Remove(productToDelete);
         }
 
@@ -40,7 +41,7 @@ namespace DataAccess.Concrete.InMemory
         public void Update(Product product)
         {
             // gonderdigim urun id'sine sahip olan listedeki urunu bul demektir
-            Product productToUpdate = _products.SingleOrDefault(p => p.productId == product.productId);
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
 
             productToUpdate.ProductName = product.ProductName;
             productToUpdate.CategoryId = product.CategoryId;
@@ -51,6 +52,16 @@ namespace DataAccess.Concrete.InMemory
         public List<Product> GetAllByCategory(int categoryId)
         {
             return _products.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product Get()
+        {
+            throw new NotImplementedException();
         }
     }
 }
