@@ -6,8 +6,8 @@ using System.Text;
 
 namespace DataAccess.Abstracts
 {
-    public interface ICategoryDal : IEntityRepository<Category>
+   public interface IOrderDal : IEntityRepository<Order>
     {
-        Category Get(Func<object, bool> p);
+
     }
 }
