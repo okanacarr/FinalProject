@@ -17,5 +17,6 @@ namespace Business.Abstracts
         IDataResult<Product> GetById(int product);
         IResult Add(Product product);
 
+        //RESTFUL --> HTTP -->  
     }
 }

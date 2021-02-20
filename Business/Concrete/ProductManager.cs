@@ -18,7 +18,7 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
-
+        
         public IResult Add(Product product)
         {
             //business codes
@@ -40,12 +40,12 @@ namespace Business.Concrete
 
             //İş kodları
             // yetkisi var mı?
-            if (DateTime.Now.Hour == 22)
+           if (DateTime.Now.Hour == 23)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductListed);
-
+          
         }
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
